@@ -1,5 +1,4 @@
 # 2019-Node.js-Study
-<hr>
 1. Introduction <br>
 2. Functions <br>
 3. Promise, async/await <br>
