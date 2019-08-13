@@ -10,13 +10,13 @@ const calculate = (a, op, b)=>{
     let result = '';
     switch (op) {
         case '+':
-            result = a + b;
+            result = add(a, b);
             break;
         case '-':
-            result = a - b;
+            result = sub(a, b);
             break;
         case '*':
-            result = a * b;
+            result = mul(a, b);
             break;
         case '/':
             if(b == 0){
@@ -24,19 +24,22 @@ const calculate = (a, op, b)=>{
                 return false;
             }
             else{
-                result = a / b;
+                result = div(a, b);
                 break;
             }
     }
     return result;
 };
 
-fs.readFile('input.txt', async (err, data)=>{
+fs.readFile('input.txt', (err, data)=>{
     if (err) throw err;
-    arr = await data.toString().split(',');
-    let first = await parseInt(arr[0]);
-    let op = await arr[1];
-    let second = await parseInt(arr[2]);
-    let result = await calculate(first, op, second);
+    arr = data.toString().split(',');
+    let first = parseInt(arr[0]);
+    let op = arr[1];
+    let second = parseInt(arr[2]);
+    let result = calculate(first, op, second);
+    fs.writeFile('output.txt', result ? result : '',(err)=>{
+        if (err) throw err;
+    });
     console.log(result ? result : '');
 });
